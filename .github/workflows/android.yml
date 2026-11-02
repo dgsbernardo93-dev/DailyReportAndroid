@@ -12,6 +12,11 @@ jobs:
       - name: Baixar repositório
         uses: actions/checkout@v4
 
+      - name: Extrair projeto Android
+        run: |
+          unzip -o Projeto_APK_Usinagem.zip -d .
+          ls -la
+
       - name: Configurar Java
         uses: actions/setup-java@v4
         with:
