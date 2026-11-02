@@ -12,11 +12,9 @@ jobs:
       - name: Baixar repositório
         uses: actions/checkout@v4
 
-      - name: Preparar projeto corrigido
+      - name: Extrair projeto corrigido
         run: |
-          unzip -o DailyReport_Usinagem_CORRIGIDO.zip -d projeto
-          echo "Arquivos encontrados:"
-          find projeto -name build.gradle -o -name build.gradle.kts
+          unzip -o DailyReport_Usinagem_CORRIGIDO_v2.zip -d projeto
 
       - name: Configurar Java
         uses: actions/setup-java@v4
@@ -36,5 +34,5 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: DailyReport-APK-Corrigido
-          path: projeto/**/build/outputs/apk/debug/*.apk
+          path: projeto/app/build/outputs/apk/debug/*.apk
           if-no-files-found: error
