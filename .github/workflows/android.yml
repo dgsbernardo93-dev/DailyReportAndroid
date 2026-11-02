@@ -12,9 +12,10 @@ jobs:
       - name: Baixar repositório
         uses: actions/checkout@v4
 
-      - name: Extrair projeto corrigido
+      - name: Extrair projeto atualizado
         run: |
-          unzip -o DailyReport_Usinagem_CORRIGIDO_v2.zip -d projeto
+          unzip -o DailyReport_Usinagem_ENVIO_DIRETO_WHATSAPP.zip -d projeto
+          ls -la projeto
 
       - name: Configurar Java
         uses: actions/setup-java@v4
@@ -26,13 +27,11 @@ jobs:
         uses: gradle/actions/setup-gradle@v4
 
       - name: Compilar APK
-        run: |
-          cd projeto
-          gradle assembleDebug
+        run: gradle -p projeto assembleDebug
 
       - name: Disponibilizar APK
         uses: actions/upload-artifact@v4
         with:
-          name: DailyReport-APK-Corrigido
+          name: DailyReport-WhatsApp-Direto
           path: projeto/app/build/outputs/apk/debug/*.apk
           if-no-files-found: error
